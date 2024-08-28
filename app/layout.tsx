@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { Nunito } from "next/font/google";
+import Navbar from "./components/navbar/Navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -9,6 +11,10 @@ export const metadata: Metadata = {
   description: "StayNest is a platform for finding the best places to stay.",
 };
 
+const font = Nunito ({
+  subsets: ["latin"],
+});
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -16,7 +22,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={font.className}>
+        <Navbar/>
+        {children}
+        </body>
     </html>
   );
 }
