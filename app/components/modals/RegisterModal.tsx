@@ -101,7 +101,7 @@ const RegisterModal = () => {
         <div
         onClick={registerModal.onClose}
           // onClick={toggle}
-          className="text-neutral-800 cursor-pointer hover:underline"
+        className="text-neutral-800 cursor-pointer hover:underline"
         >
           Log in
         </div>
