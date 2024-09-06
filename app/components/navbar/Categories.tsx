@@ -1,4 +1,4 @@
-'use client'
+'use client' // To run this component in the client-side only
 
 import { TbBeach, TbMountain, TbPool } from 'react-icons/tb'
 import { MdOutlineVilla } from 'react-icons/md'
@@ -28,14 +28,8 @@ export const categories = [
   { label: 'Desert', icon: GiCactus, description: 'This property is in the desert!' },
   { label: 'Barns', icon: GiBarn, description: 'This property is in a barn!' },
   { label: 'Lux', icon: IoDiamond, description: 'This property is brand new and luxurious!' },
-  { label: 'Skiing', icon: FaSkiing, description: 'This property has skiing activities!' },
-  { label: 'Castles', icon: GiCastle, description: 'This property is an ancient castle!' },
-  { label: 'Caves', icon: GiCaveEntrance, description: 'This property is in a spooky cave!' },
-  { label: 'Camping', icon: GiForestCamp, description: 'This property offers camping activities!' },
-  { label: 'Arctic', icon: BsSnow, description: 'This property is in an arctic environment!' },
-  { label: 'Desert', icon: GiCactus, description: 'This property is in the desert!' },
-  { label: 'Barns', icon: GiBarn, description: 'This property is in a barn!' },
-  { label: 'Lux', icon: IoDiamond, description: 'This property is brand new and luxurious!' },
+  
+  
   {
     label: 'Treehouse',
     icon: GiTreehouse, // You can replace with a relevant icon
@@ -52,7 +46,7 @@ export const categories = [
     description: 'This property is in the peaceful countryside!'
   },
   {
-    label: 'With View',
+    label: 'Amazing View',
     icon: AiOutlineEye, // You can replace with a relevant icon
     description: 'This property offers an amazing view!'
   },
@@ -62,7 +56,7 @@ export const categories = [
     description: 'This property has a rich history!'
   },
   {
-    label: 'City',
+    label: 'City view',
     icon: FaCity, // You can replace with a relevant icon
     description: 'This property is in the heart of the city!'
   },
