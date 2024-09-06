@@ -8,6 +8,7 @@ const Logo = () => {
 
     return (
         <Image
+            onClickCapture={() => router.push('/')} // Example of using the router to navigate
             alt="Logo"
             src="/images/logo.png"
             width={150}
