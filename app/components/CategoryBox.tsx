@@ -54,7 +54,7 @@ const CategoryBox: React.FC<CategoryBoxProps> = ({ icon: Icon, label, selected }
     >
       <div className="icon-container hover:scale-150 transition-transform duration-300 ease-out"> {/* Add animation here */}
       <Icon size={28} color=' #5d3a1a'/> </div>
-      <div className="font-medium text-medium">{label}</div>
+           <div className="font-medium text-medium whitespace-nowrap">{label}</div>
     </div>
   )
 }
