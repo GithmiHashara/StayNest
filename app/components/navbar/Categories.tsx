@@ -40,12 +40,7 @@ export const categories = [
     icon: GiWaveSurfer, // You can replace with a relevant icon
     description: 'This property is on a beautiful lakefront!'
   },
-  {
-    label: 'Countryside',
-    icon: MdOutlineVilla,
-    description: 'This property is in the peaceful countryside!'
-  },
-  {
+    {
     label: 'Amazing View',
     icon: AiOutlineEye, // You can replace with a relevant icon
     description: 'This property offers an amazing view!'
