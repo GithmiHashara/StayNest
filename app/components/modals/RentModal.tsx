@@ -8,6 +8,8 @@ import { categories } from "../navbar/Categories";
 import { it } from "node:test";
 import CategoryInput from "../inputs/CategoryInput";
 import { FieldValues, useForm } from "react-hook-form";
+import CountrySelect from "../inputs/CountrySelect";
+import Map from "../Map";
 
 enum STEPS { // Enumerated type mean that we can only choose from a fixed set of values to assign to a variable 
     
@@ -47,7 +49,8 @@ const RentModal = () => {
     }
   });
 
-  const category = watch('category')
+  const category = watch('category');
+  const location = watch('location'); // watch is a hook that allows us to watch the value of a field in the form
  
   const setCustomValue = (id: string, value: any) => {
     setValue(id, value, {
@@ -105,12 +108,29 @@ const RentModal = () => {
       </div>
     </div>
   )
+  if (step === STEPS.LOCATION) {
+    bodyContent = (
+      <div className="flex flex-col gap-8">
+        <Heading
+          title="Where is your place located?"
+          subtitle="Help guests find you!"
+        />
+       
+        <CountrySelect
+          value={location}
+          onChange={(value) => setCustomValue('location', value)}
+        />
+        {/* <Map center={location?.latlng} /> */}
+        <Map />
+      </div>
+    )
+  }
 
     return (
         <Modal
         isOpen={rentModal.isOpen}
         onClose={rentModal.onClose}
-        onSubmit={rentModal.onClose}
+        onSubmit={onNext}
         actionLabel={actionLabel} // This is the next button
         secondaryActionLabel={secondaryActionLabel} // This is the back button
         secondaryAction={step === STEPS.CATEGORY ? undefined : onBack}  //make sure if we are in first step we don't have back button     
