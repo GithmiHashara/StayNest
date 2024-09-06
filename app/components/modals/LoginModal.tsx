@@ -56,10 +56,10 @@ const LoginModal = () => {
     })
   }
 
-  const toggle = useCallback(() => {
-    loginModal.onClose()
-    registerModal.onOpen()
-  }, [loginModal, registerModal])
+  const toggle = useCallback(() => { //toggle between login and register
+    loginModal.onClose() //close the login modal
+    registerModal.onOpen() //open the register modal
+  }, [loginModal, registerModal]) //pass the login modal and register modal to the dependencies array
 
   const bodyContent = (
     <div className="flex flex-col gap-4" >
