@@ -92,14 +92,14 @@ const RentModal = () => {
     }
 
     const onSubmit: SubmitHandler<FieldValues> = (data) => {
-      if (step === STEPS.PRICE) {
-       return onNext();
-      } setIsLoading(true);
+      if (step !== STEPS.PRICE) { // If we are not in the last step
+       return onNext(); // Go to the next step
+      } setIsLoading(true); // Show a loading spinner
      // Make a request to the server to create a new listing
-    axios
+    axios 
     .post('/api/listings', data) // Send the data to the server
     .then(() => {
-      toast.success('Listing created!');  // Show a success message
+      toast.success('Listing created!'); // Show a success message
       router.refresh(); // Refresh the page to see the new listing
       reset()
       setStep(STEPS.CATEGORY)
