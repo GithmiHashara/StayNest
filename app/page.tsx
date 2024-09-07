@@ -24,6 +24,10 @@ export default async function Home() {
       {listings.map((listing) => (
             <ListingCard
               key={listing.id}
+              // data={{
+              //   ...listing,
+              //   createdAt: listing.createdAt.toISOString()
+              // }}
               data={listing}
               currentUser={currentUser}
             />
