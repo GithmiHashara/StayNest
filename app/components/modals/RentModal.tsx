@@ -57,6 +57,7 @@ const RentModal = () => {
   const guestCount = watch('guestCount');
   const roomCount = watch('roomCount');
   const bathroomCount = watch('bathroomCount');
+  const imageSrc = watch('imageSrc');
  
   // we are using useMemo to make sure that the map component is only loaded when the location changes
   const Map = useMemo(
@@ -175,18 +176,19 @@ const RentModal = () => {
   }
 
   if (step === STEPS.IMAGES) {
-    bodyContent = ( 
-      
-         <div className="flex flex-col gap-8">
+    bodyContent = (
+      <div className="flex flex-col gap-8">
         <Heading
-          title="Add images of your place"
-          subtitle="Show guests what your place looks like!" 
+          title="Add a photo of your place"
+          subtitle="Show guests what your place looks like!"
         />
-        <ImageUpload/>
+        <ImageUpload
+          value={imageSrc}
+          onChange={(value) => setCustomValue('imageSrc', value)}
+        />
       </div>
     )
   }
-
 
      
 
