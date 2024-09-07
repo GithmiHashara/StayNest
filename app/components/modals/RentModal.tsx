@@ -11,6 +11,7 @@ import { FieldValues, useForm } from "react-hook-form";
 import CountrySelect from "../inputs/CountrySelect";
 import dynamic from "next/dynamic";
 import Counter from "../inputs/Counter";
+import ImageUpload from "../inputs/ImageUpload";
 
 
 enum STEPS { // Enumerated type mean that we can only choose from a fixed set of values to assign to a variable 
@@ -181,9 +182,12 @@ const RentModal = () => {
           title="Add images of your place"
           subtitle="Show guests what your place looks like!" 
         />
+        <ImageUpload/>
       </div>
     )
   }
+
+
      
 
     return (
