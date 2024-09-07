@@ -7,7 +7,7 @@ import { format } from 'date-fns'
 
 import { SafeListing, SafeReservation, SafeUser } from '@/app/types'
 import useCountries from '@/app/hooks/useCountries'
-// import HeartButton from '../HeartButton'
+import HeartButton from '../HeartButton'
 import Button from '../Button'
 
 interface ListingCardProps {
@@ -53,7 +53,7 @@ const ListingCard: React.FC<ListingCardProps> = ({ data, reservation, onAction, 
     const start = new Date(reservation.startDate)
     const end = new Date(reservation.endDate)
 
-//     return `${format(start, 'PP')} - ${format(end, 'PP')}`
+    return `${format(start, 'PP')} - ${format(end, 'PP')}`
   }, [reservation])
 
   return (
@@ -70,10 +70,10 @@ const ListingCard: React.FC<ListingCardProps> = ({ data, reservation, onAction, 
             className="object-cover h-full w-full group-hover:scale-110 transition"
           />
           <div className="absolute top-3 right-3">
-            {/* <HeartButton
+            <HeartButton
               listingId={data.id}
               currentUser={currentUser}
-            /> */}
+            />
           </div>
         </div>
         <div className="font-semibold text-lg">
