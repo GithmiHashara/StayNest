@@ -17,15 +17,16 @@ interface ImageUploadProps {
 const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, value }) => {
   const handleUpload = useCallback(
     (result: any) => {
-      onChange(result.info.secure_url)
+      console.log(result);  // Check the result object here
+      onChange(result.info.secure_url)  // Ensure this is the correct path
     },
     [onChange]
   )
 
   return (
     <CldUploadWidget
-      onUpload={handleUpload}
-      uploadPreset="xpkbe4ko"
+      onSuccess={handleUpload} // This is the callback function that will be called when the upload is successful
+      uploadPreset="cs63xgsz"
       options={{
         maxFiles: 1
       }}
@@ -56,4 +57,3 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, value }) => {
 }
 
 export default ImageUpload
- 
