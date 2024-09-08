@@ -27,16 +27,16 @@ interface IUseFavorite {
         e.stopPropagation()
   
         if (!currentUser) {
-          return loginModal.onOpen()
+          return loginModal.onOpen() //open the login modal
         }
   
-        try {
+        try { //make the axios request
           let request
   
           if (hasFavorited) {
-            request = () => axios.delete(`/api/favorites/${listingId}`)
+            request = () => axios.delete(`/api/favorites/${listingId}`) //delete request
           } else {
-            request = () => axios.post(`/api/favorites/${listingId}`)
+            request = () => axios.post(`/api/favorites/${listingId}`) //post request
           }
   
           await request()
@@ -46,7 +46,7 @@ interface IUseFavorite {
           toast.error('Something went wrong.')
         }
       },
-      [currentUser, hasFavorited, listingId, loginModal, router]
+      [currentUser, hasFavorited, listingId, loginModal, router] //pass the dependencies array
     )
   
     return {
