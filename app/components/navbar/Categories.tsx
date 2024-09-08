@@ -6,7 +6,9 @@ import { FaCity, FaHome, FaMountain, FaSkiing } from 'react-icons/fa'
 import { BsSnow } from 'react-icons/bs'
 import { GiCactus, GiBarn, GiForestCamp, GiCaveEntrance, GiCastle, GiBoatFishing, GiIsland, GiWindmill, GiAncientSword, GiFarmTractor, GiGrapes, GiTreehouse, GiWaveSurfer } from 'react-icons/gi'
 import { IoDiamond } from 'react-icons/io5'
-
+import { GiPianoKeys } from 'react-icons/gi';
+import { FaTree } from 'react-icons/fa';
+import { MdBeachAccess } from 'react-icons/md';
 import Container from '../Container'
 import CategoryBox from '../CategoryBox'
 import { AiOutlineEye } from 'react-icons/ai'
@@ -28,6 +30,9 @@ export const categories = [
   { label: 'Desert', icon: GiCactus, description: 'This property is in the desert!' },
   { label: 'Barns', icon: GiBarn, description: 'This property is in a barn!' },
   { label: 'Lux', icon: IoDiamond, description: 'This property is brand new and luxurious!' },
+  { label: 'Piano', icon: GiPianoKeys, description: 'Discover properties with elegant pianos for music enthusiasts and gatherings.' },
+  { label: 'National Parks', icon: FaTree, description: 'Explore properties near breathtaking national parks and natural wonders.' },
+  { label: 'Tropical', icon: MdBeachAccess, description: 'Find properties in lush, tropical settings perfect for relaxation and adventure.' },
   
   
   {
@@ -36,7 +41,7 @@ export const categories = [
     description: 'This property is a unique treehouse!'
   },
   {
-    label: 'Lakefront',
+    label: 'Surfing',
     icon: GiWaveSurfer, // You can replace with a relevant icon
     description: 'This property is on a beautiful lakefront!'
   },
@@ -92,7 +97,7 @@ const Categories = () => {
     <Container>
       {/* Flex container with scrolling enabled */}
       
-      <div className="pt-4 flex flex-row items-center justify-start space-x-4 overflow-x-auto scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-gray-500 scrollbar-track-transparent">
+      <div className="pt-4 flex flex-row items-center justify-start space-x-4 overflow-x-auto scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-gray-500 scrollbar-track-transparent ">
         {categories.map((item) => (
           <CategoryBox
             key={item.label}
