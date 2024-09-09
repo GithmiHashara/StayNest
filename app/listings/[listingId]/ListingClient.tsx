@@ -8,6 +8,12 @@ import { SafeListing, SafeUser } from "@/app/types";
 import { Reservation } from "@prisma/client";
 import { useMemo } from "react";
 
+const initialDateRange = {
+  startDate: new Date(),
+  endDate: new Date(),
+  key: 'selection'
+};
+
 interface ListingClientProps {
     reservations?: Reservation[];
     listing: SafeListing & {
@@ -18,8 +24,12 @@ interface ListingClientProps {
 
   const ListingClient: React.FC<ListingClientProps> = ({
       listing, 
+      reservations = [],
       currentUser
      }) => {
+
+      //login model
+      
    
         const category = useMemo(() => {
             return categories.find((item) => item.label === listing.category);
