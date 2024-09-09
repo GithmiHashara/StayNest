@@ -25,4 +25,4 @@ const ListingCategory: React.FC<ListingCategoryProps> = ({ icon: Icon, label, de
   )
 }
 
-export default ListingCategory
+export default ListingCategory;
