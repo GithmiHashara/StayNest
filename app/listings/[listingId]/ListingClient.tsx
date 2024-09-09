@@ -35,7 +35,7 @@ interface ListingClientProps {
       const router = useRouter();
 
       const disabledDates = useMemo(() => {
-
+         let dates
       }, []);
    
         const category = useMemo(() => {
