@@ -8,7 +8,7 @@ import useLoginModal from "@/app/hooks/useLoginModal";
 import { SafeListing, SafeUser } from "@/app/types";
 import { Reservation } from "@prisma/client";
 import axios from "axios";
-import { eachDayOfInterval } from "date-fns";
+import { differenceInCalendarDays, eachDayOfInterval } from "date-fns";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import toast from "react-hot-toast";
@@ -96,8 +96,16 @@ interface ListingClientProps {
 
       //change the total price depending on how user select dates
       useEffect (() => {
-
-      }, []);
+        if (dateRange.startDate && dateRange.endDate) {
+          const dayCount = differenceInCalendarDays(dateRange.endDate, dateRange.startDate)
+    
+          if (dayCount && listing.price) {
+            setTotalPrice(dayCount * listing.price)
+          } else {
+            setTotalPrice(listing.price)
+          }
+        }
+      }, [dateRange, listing.price]);
    
         const category = useMemo(() => {
             return categories.find((item) => item.label === listing.category);
