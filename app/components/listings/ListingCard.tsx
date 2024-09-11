@@ -55,11 +55,12 @@ const ListingCard: React.FC<ListingCardProps> = ({ data, reservation, onAction, 
   }, [reservation])
 
   return (
-    <div className="grid grid-cols-4 gap-4">
+    //<div className="grid grid-cols-4 gap-4">
     <div
       onClick={() => router.push(`/listings/${data.id}`)}
       //className="col-span-1 cursor-pointer group  hover:bg-red-100"
-      className="col-span-10 cursor-pointer group shadow-md rounded-xl p-4 hover:shadow-lg transition  hover:bg-amber-100"
+      className="col-span-2 cursor-pointer group shadow-md rounded-xl p-4 hover:shadow-lg transition  hover:bg-amber-100"
+      //className="col-span-10 cursor-pointer group shadow-md rounded-xl p-4 hover:shadow-lg transition  hover:bg-amber-100" (if want 6 for a row. uncomment 1st div and this one)
     >
       <div className="flex flex-col gap-2 w-full ">
         <div className="aspect-square w-full relative overflow-hidden rounded-xl">
@@ -83,7 +84,7 @@ const ListingCard: React.FC<ListingCardProps> = ({ data, reservation, onAction, 
         <div className="flex flex-row items-center gap-1">
           <div className="font-semibold">$ {price}</div>
           {!reservation && <div className="font-light">night</div>}
-        </div>
+        {/* </div> */}
         {onAction && actionLabel && (
           <Button
             disabled={disabled}
