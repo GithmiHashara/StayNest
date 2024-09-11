@@ -7,9 +7,11 @@ import { categories } from "@/app/components/navbar/Categories";
 import useLoginModal from "@/app/hooks/useLoginModal";
 import { SafeListing, SafeUser } from "@/app/types";
 import { Reservation } from "@prisma/client";
+import axios from "axios";
 import { eachDayOfInterval } from "date-fns";
 import { useRouter } from "next/navigation";
-import { useMemo } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import toast from "react-hot-toast";
 
 const initialDateRange = {
   startDate: new Date(),
@@ -38,17 +40,64 @@ interface ListingClientProps {
       const disabledDates = useMemo(() => {
         let dates: Date[] = []
     
-        reservations.forEach((reservation: any) => {
+        reservations.forEach((reservation) => {
           const range = eachDayOfInterval({
             start: new Date(reservation.startDate),
             end: new Date(reservation.endDate)
-          })
+          });
     
-          dates = [...dates, ...range]
-        })
-    
+          dates = [...dates, ...range];
+        });
+
         return dates
-      }, [reservations])
+      }, [reservations]);
+
+      const [isLoading, setIsLoading] = useState(false);
+      const[totalPrice, setTotalPrice] = useState(listing.price);
+      const [dateRange, setDateRange] = useState(initialDateRange);
+
+      //create reservation
+
+      const onCreateReservation = useCallback(() => {
+        if(!currentUser) {
+          return loginModal.onOpen();
+        }
+        setIsLoading(true);
+
+        axios.post('/api/reservations', {
+          totalPrice,
+          startDate: dateRange.startDate,
+          endDate: dateRange.endDate,
+          listingId: listing?.id
+        }).then(() => {
+          toast.success('Listing reserved!'); //Reservation created successfully
+          setDateRange(initialDateRange);
+
+          //Redirect to /trips
+          router.refresh();
+        })
+        .catch (() => {
+          toast.error('Something went wrong.');
+        })
+        .finally(() => {
+          setIsLoading(false);
+        })
+        
+      }, [
+        totalPrice,
+        dateRange,
+        currentUser,
+        listing?.id,
+        router,
+        loginModal,
+       
+      ]);
+
+
+      //change the total price depending on how user select dates
+      useEffect (() => {
+
+      }, []);
    
         const category = useMemo(() => {
             return categories.find((item) => item.label === listing.category);
