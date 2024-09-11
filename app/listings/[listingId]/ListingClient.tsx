@@ -13,6 +13,7 @@ import { differenceInCalendarDays, eachDayOfInterval } from "date-fns";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import toast from "react-hot-toast";
+import { Range } from "react-date-range";
 
 const initialDateRange = {
   startDate: new Date(),
@@ -55,7 +56,7 @@ interface ListingClientProps {
 
       const [isLoading, setIsLoading] = useState(false);
       const[totalPrice, setTotalPrice] = useState(listing.price);
-      const [dateRange, setDateRange] = useState(initialDateRange);
+      const [dateRange, setDateRange] = useState<Range>(initialDateRange);
 
       //create reservation
 
