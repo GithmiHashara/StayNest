@@ -38,7 +38,7 @@ interface ListingClientProps {
       const disabledDates = useMemo(() => {
         let dates: Date[] = []
     
-        reservations.forEach((reservation) => {
+        reservations.forEach((reservation: any) => {
           const range = eachDayOfInterval({
             start: new Date(reservation.startDate),
             end: new Date(reservation.endDate)
