@@ -13,8 +13,8 @@ import ListingCard from '../components/listings/ListingCard'
 import { set } from 'date-fns'
 
 interface ReservationsClientProps {
-  reservations: SafeReservation[]
-  currentUser?: SafeUser | null
+  reservations: SafeReservation[] //array of reservations
+  currentUser?: SafeUser | null //current user
 }
 
 const ReservationsClient: React.FC<ReservationsClientProps> = ({ reservations, currentUser }) => {
@@ -28,17 +28,17 @@ const ReservationsClient: React.FC<ReservationsClientProps> = ({ reservations, c
       axios
         .delete(`/api/reservations/${id}`)
         .then(() => {
-          toast.success('Reservation cancelled')
+          toast.success('Reservation cancelled') //toast message
           router.refresh()
         })
         .catch(() => {
-          toast.error('Something went wrong')
+          toast.error('Something went wrong')    //toast message
         })
         .finally(() => {
           setDeletingId('')
         })
     },
-    [router]
+    [router] //router dependency
   )
 
   return (
