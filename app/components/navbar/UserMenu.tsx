@@ -1,39 +1,41 @@
-'use client';
+'use client'
 
-import { AiOutlineMenu } from "react-icons/ai";
-import Avatar from "../Avatar";
-import { useCallback, useState } from "react";
-import MenuItem from "./MenuItem";
-import useRegisterModal from "@/app/hooks/useRegisterModal";
-import useLoginModal from "@/app/hooks/useLoginModal";
-import { signOut } from "next-auth/react";
-import { SafeUser } from "@/app/types";
-import useRentModal from "@/app/hooks/useRentModal";
-import { useRouter } from "next/navigation";
+import { useState, useCallback } from 'react'
+import { AiOutlineMenu } from 'react-icons/ai'
+import { SafeUser } from '@/app/types'
+import { signOut } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
+
+import useRegisterModal from '@/app/hooks/useRegisterModal'
+import useLoginModal from '@/app/hooks/useLoginModal'
+import useRentModal from '@/app/hooks/useRentModal'
+
+import Avatar from '../Avatar'
+import MenuItem from './MenuItem'
 
 interface UserMenuProps {
-  currentUser?: SafeUser | null;
+  currentUser?: SafeUser | null
 }
 
 const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
-  const router = useRouter();
-  const registerModal = useRegisterModal();
-  const loginModal = useLoginModal();
-  const rentModal = useRentModal();
-  const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter()
+  const registerModal = useRegisterModal()
+  const loginModal = useLoginModal()
+  const rentModal = useRentModal()
+
+  const [isOpen, setIsOpen] = useState(false)
 
   const toggleOpen = useCallback(() => {
-    setIsOpen((value) => !value);
-  }, []);
+    setIsOpen((value) => !value)
+  }, [])
 
   const onRent = useCallback(() => {
     if (!currentUser) {
-      return loginModal.onOpen();
+      return loginModal.onOpen()
     }
 
-    // open rent modal
-    rentModal.onOpen();
-  }, [currentUser, loginModal, rentModal]);
+    rentModal.onOpen()
+  }, [currentUser, loginModal, rentModal])
 
   return (
     <div className="relative">
@@ -42,7 +44,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
           onClick={onRent}
           className="hidden md:block text-sm font-semibold py-3 px-4 rounded-full hover:bg-neutral-100 transition cursor-pointer"
         >
-          StayNest your home
+          Airbnb your home
         </div>
         <div
           onClick={toggleOpen}
@@ -54,30 +56,55 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
           </div>
         </div>
       </div>
+
       {isOpen && (
         <div className="absolute rounded-xl shadow-md w-[40vw] md:w-3/4 bg-white overflow-hidden right-0 top-12 text-sm">
           <div className="flex flex-col cursor-pointer">
             {currentUser ? (
               <>
-                <MenuItem onClick={() => router.push("/trips")} label="My trips" />
-                <MenuItem onClick={() => router.push("/favorites")} label="My favourites" />
-                <MenuItem onClick={() => router.push("/reservations")} label="My reservations" />
-                <MenuItem onClick={() => router.push("/properties")} label="My properties" />
-                <MenuItem onClick={rentModal.onOpen} label="StayNest my home" />
+                <MenuItem
+                  onClick={() => router.push('/trips')}
+                  label="My trips"
+                />
+                <MenuItem
+                  onClick={() => router.push('/favorites')}
+                  label="My favorites"
+                />
+                <MenuItem
+                  onClick={() => router.push('/reservations')}
+                  label="My reservations"
+                />
+                <MenuItem
+                  onClick={() => router.push('/properties')}
+                  label="My properties"
+                />
+                <MenuItem
+                  onClick={rentModal.onOpen}
+                  label="Airbnb my home"
+                />
                 <hr />
-                <MenuItem onClick={() => signOut()} label="Logout" />
+                <MenuItem
+                  onClick={() => signOut()}
+                  label="Logout"
+                />
               </>
             ) : (
               <>
-                <MenuItem onClick={loginModal.onOpen} label="Login" />
-                <MenuItem onClick={registerModal.onOpen} label="Sign up" />
+                <MenuItem
+                  onClick={loginModal.onOpen}
+                  label="Login"
+                />
+                <MenuItem
+                  onClick={registerModal.onOpen}
+                  label="Sign up"
+                />
               </>
             )}
           </div>
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default UserMenu;
+export default UserMenu
