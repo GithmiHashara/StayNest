@@ -1,7 +1,10 @@
+/* eslint-disable @next/next/no-img-element */
+
 'use client'
 
 import Select from 'react-select'
 import useCountries from '@/app/hooks/useCountries'
+
 
 export type CountrySelectValue = {
   flag: string
