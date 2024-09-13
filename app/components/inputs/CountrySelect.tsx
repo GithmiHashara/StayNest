@@ -1,24 +1,24 @@
 'use client'
 
-import Select from 'react-select'
-import useCountries from '@/app/hooks/useCountries'
-import Image from 'next/image'
+import Select from 'react-select';
+import useCountries from '@/app/hooks/useCountries';
+import Image from 'next/image';
 
 export type CountrySelectValue = {
-  flag: string
-  label: string
-  latlng: number[]
-  region: string
-  value: string
+  flag: string;
+  label: string;
+  latlng: number[];
+  region: string;
+  value: string;
 }
 
 interface CountrySelectProps {
-  value?: CountrySelectValue
-  onChange: (value: CountrySelectValue) => void
+  value?: CountrySelectValue;
+  onChange: (value: CountrySelectValue) => void;
 }
 
 const CountrySelect: React.FC<CountrySelectProps> = ({ value, onChange }) => {
-  const { getAll } = useCountries()
+  const { getAll } = useCountries();
 
   return (
     <div>
@@ -57,13 +57,13 @@ const CountrySelect: React.FC<CountrySelectProps> = ({ value, onChange }) => {
           borderRadius: 6,
           colors: {
             ...theme.colors,
-            primary: '#fcd75f', // if want give black
-            primary25: '#fef3c7', // light yellow for hover (rose colour is #ffe4e6)
+            primary: '#fcd75f',
+            primary25: '#fef3c7',
           },
         })}
       />
     </div>
-  )
+  );
 }
 
-export default CountrySelect
+export default CountrySelect;
