@@ -1,6 +1,6 @@
 import prisma from '@/app/libs/prismadb'
-
 import getCurrentUser from './getCurrentUser'
+import { Listing } from '@prisma/client' // Assuming your Prisma model is named Listing
 
 export default async function getFavoriteListings() {
   try {
@@ -10,7 +10,7 @@ export default async function getFavoriteListings() {
       return []
     }
 
-    const favorites = await prisma.listing.findMany({
+    const favorites: Listing[] = await prisma.listing.findMany({
       where: {
         id: {
           in: [...(currentUser.favoriteIds || [])]
@@ -18,7 +18,7 @@ export default async function getFavoriteListings() {
       }
     })
 
-    const safeFavorites = favorites.map((favorite) => ({
+    const safeFavorites = favorites.map((favorite: Listing) => ({
       ...favorite,
       createdAt: favorite.createdAt.toISOString()
     }))
