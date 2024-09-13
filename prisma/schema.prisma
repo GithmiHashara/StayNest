@@ -6,6 +6,7 @@
 
 generator client {
   provider = "prisma-client-js"
+  output   = "./generated/client"
 }
 
 datasource db {
@@ -86,7 +87,3 @@ model Reservation {
   listing Listing @relation(fields: [listingId], references: [id], onDelete: Cascade)
 }
 
-generator client {
-  provider = "prisma-client-js"
-  output   = "./generated/client"
-}
