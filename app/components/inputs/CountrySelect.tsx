@@ -1,10 +1,8 @@
-
-
 'use client'
 
 import Select from 'react-select'
 import useCountries from '@/app/hooks/useCountries'
-
+import Image from 'next/image'
 
 export type CountrySelectValue = {
   flag: string
@@ -33,10 +31,12 @@ const CountrySelect: React.FC<CountrySelectProps> = ({ value, onChange }) => {
         formatOptionLabel={(option: any) => (
           <div className="flex flex-row items-center gap-3">
             {option.flag && (
-              <img
+              <Image
                 src={option.flag}
                 alt={`${option.label} flag`}
-                style={{ width: '20px', height: '15px', borderRadius: '2px' }}
+                width={20}
+                height={15}
+                style={{ borderRadius: '2px' }}
               />
             )}
             <div>
@@ -57,8 +57,8 @@ const CountrySelect: React.FC<CountrySelectProps> = ({ value, onChange }) => {
           borderRadius: 6,
           colors: {
             ...theme.colors,
-            primary: '#fcd75f', //if want give black
-            primary25: '#fef3c7', // light yellow for hover ( rose colour is #ffe4e6)
+            primary: '#fcd75f', // if want give black
+            primary25: '#fef3c7', // light yellow for hover (rose colour is #ffe4e6)
           },
         })}
       />
