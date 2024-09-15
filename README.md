@@ -34,3 +34,5 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+StayNest is a modern web application built with Next.js and Tailwind CSS, designed to offer a seamless and intuitive experience for booking and managing vacation rentals. The app leverages MongoDB for efficient data storage and retrieval, with a focus on scalability and performance. StayNest features dynamic category filtering, date-based reservations, and user-friendly interfaces, ensuring a smooth experience for both property owners and guests.
