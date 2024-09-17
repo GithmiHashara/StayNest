@@ -66,10 +66,10 @@
 // app/actions/getFavoriteListings.ts
 
 
-
 import prisma from '@/app/libs/prismadb'
 import getCurrentUser from './getCurrentUser'
-import { Listing } from '@prisma/client' // Import the Listing type
+// import { Prisma } from '@prisma/client'
+import { Prisma } from '@/prisma/generated/client'
 
 export default async function getFavoriteListings() {
   try {
@@ -80,7 +80,7 @@ export default async function getFavoriteListings() {
     }
 
     // Fetch listings that match the user's favorite IDs
-    const favorites: Listing[] = await prisma.listing.findMany({
+    const favorites: Prisma.ListingGetPayload<{}>[] = await prisma.listing.findMany({
       where: {
         id: {
           in: [...(currentUser.favoriteIds || [])]
