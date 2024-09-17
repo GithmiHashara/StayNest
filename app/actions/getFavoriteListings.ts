@@ -64,9 +64,11 @@
 // }
 
 // app/actions/getFavoriteListings.ts
+
+
+
 import prisma from '@/app/libs/prismadb'
 import getCurrentUser from './getCurrentUser'
-import { Prisma } from '@prisma/client'
 
 export default async function getFavoriteListings() {
   try {
@@ -76,7 +78,8 @@ export default async function getFavoriteListings() {
       return []
     }
 
-    const favorites: Prisma.ListingGetPayload<{}>[] = await prisma.listing.findMany({
+    // Find the favorite listings based on the user's favoriteIds
+    const favorites = await prisma.listing.findMany({
       where: {
         id: {
           in: [...(currentUser.favoriteIds || [])]
@@ -84,6 +87,7 @@ export default async function getFavoriteListings() {
       }
     })
 
+    // Convert the createdAt date to ISO string for safe serialization
     const safeFavorites = favorites.map((favorite) => ({
       ...favorite,
       createdAt: favorite.createdAt.toISOString()
@@ -94,4 +98,3 @@ export default async function getFavoriteListings() {
     throw new Error(error)
   }
 }
-
