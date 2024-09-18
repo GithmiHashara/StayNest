@@ -101,9 +101,43 @@
 // }
 
 
+// import prisma from '@/app/libs/prismadb'
+// import getCurrentUser from './getCurrentUser'
+// import { Listing } from '@prisma/client' // Adjust the import based on your actual model
+
+// export default async function getFavoriteListings() {
+//   try {
+//     const currentUser = await getCurrentUser()
+
+//     if (!currentUser) {
+//       return []
+//     }
+
+//     // Typecasting favorites to the Listing type
+//     const favorites: Listing[] = await prisma.listing.findMany({
+//       where: {
+//         id: {
+//           in: [...(currentUser.favoriteIds || [])]
+//         }
+//       }
+//     })
+
+//     const safeFavorites = favorites.map((favorite) => ({
+//       ...favorite,
+//       createdAt: favorite.createdAt.toISOString()
+//     }))
+
+//     return safeFavorites
+//   } catch (error: any) {
+//     throw new Error(error)
+//   }
+// }
+
+
+
 import prisma from '@/app/libs/prismadb'
 import getCurrentUser from './getCurrentUser'
-import { Listing } from '@prisma/client' // Adjust the import based on your actual model
+import { Prisma } from '@/prisma/generated/client'
 
 export default async function getFavoriteListings() {
   try {
@@ -113,8 +147,8 @@ export default async function getFavoriteListings() {
       return []
     }
 
-    // Typecasting favorites to the Listing type
-    const favorites: Listing[] = await prisma.listing.findMany({
+    // Fetch listings that match the user's favorite IDs
+    const favorites: Prisma.ListingGetPayload<true>[] = await prisma.listing.findMany({
       where: {
         id: {
           in: [...(currentUser.favoriteIds || [])]
@@ -122,9 +156,10 @@ export default async function getFavoriteListings() {
       }
     })
 
+    // Ensure the createdAt field is serialized to an ISO string for safe handling
     const safeFavorites = favorites.map((favorite) => ({
       ...favorite,
-      createdAt: favorite.createdAt.toISOString()
+      createdAt: favorite.createdAt.toISOString() // Ensure safe serialization
     }))
 
     return safeFavorites
