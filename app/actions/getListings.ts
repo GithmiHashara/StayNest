@@ -1,5 +1,13 @@
 import prisma from "@/app/libs/prismadb";
 
+// types.ts
+export interface Listing {
+  id: string;
+  createdAt: Date;
+  // Add other fields you expect from the listing
+}
+
+
 export interface IListingsParams {
   userId?: string;
   guestCount?: number;
@@ -84,7 +92,7 @@ export default async function getListings(
       }
     });
 
-    const safeListings = listings.map((listing) => ({
+    const safeListings = listings.map((listing: Listing) => ({
       ...listing,
       createdAt: listing.createdAt.toISOString(),
     }));
