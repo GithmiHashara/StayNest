@@ -138,6 +138,7 @@
 import prisma from '@/app/libs/prismadb'
 import getCurrentUser from './getCurrentUser'
 import { Prisma } from '@/prisma/generated/client'
+import { SafeListing } from '../types'
 
 export default async function getFavoriteListings() {
   try {
@@ -147,20 +148,20 @@ export default async function getFavoriteListings() {
       return []
     }
 
-    // Fetch listings that match the user's favorite IDs
-    const favorites: Prisma.ListingGetPayload<true>[] = await prisma.listing.findMany({
+    const favorites = await prisma.listing.findMany({
       where: {
         id: {
-          in: [...(currentUser.favoriteIds || [])]
-        }
-      }
-    })
-
+          in: [...(currentUser.favoriteIds || [])],
+        },
+      },
+    }) as Prisma.ListingGetPayload<true>[];  // Explicit typecasting here
+    
     // Ensure the createdAt field is serialized to an ISO string for safe handling
-    const safeFavorites = favorites.map((favorite) => ({
+    const safeFavorites: SafeListing[] = favorites.map((favorite) => ({
       ...favorite,
-      createdAt: favorite.createdAt.toISOString() // Ensure safe serialization
-    }))
+      createdAt: favorite.createdAt.toISOString(),
+    }));
+    
 
     return safeFavorites
   } catch (error: any) {
