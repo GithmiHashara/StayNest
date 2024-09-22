@@ -1,6 +1,17 @@
 
 import prisma from '@/app/libs/prismadb'
 
+// src/types.ts or app/types.ts
+
+export interface Reservation {
+  listing: any;
+  id: string;
+  createdAt: Date;
+  startDate: Date;
+  endDate: Date;
+  // Add other fields you
+}
+
 interface IParams {
   listingId?: string 
   userId?: string
@@ -39,7 +50,7 @@ export default async function getReservations(
       }
     })
 
-    const safeReservations = reservations.map((reservation) => ({
+    const safeReservations = reservations.map((reservation: Reservation) => ({
       ...reservation,
       createdAt: reservation.createdAt.toISOString(),
       startDate: reservation.startDate.toISOString(),
